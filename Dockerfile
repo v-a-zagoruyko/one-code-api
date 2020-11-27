@@ -15,6 +15,7 @@ COPY ./ /app/main/
 
 WORKDIR /app/main/
 
+RUN python ./manage.py migrate --no-input
 RUN python ./manage.py collectstatic --no-input
 
 EXPOSE 9000
