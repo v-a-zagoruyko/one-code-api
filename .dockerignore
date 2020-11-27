@@ -1,0 +1,8 @@
+.idea/
+.git/
+_data
+.pytest_cache/
+.cache
+venv/
+node_modules/
+k8s/
