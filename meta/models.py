@@ -1,5 +1,4 @@
 from django.db import models
-from apiv0.models import Product
 
 
 class Sizes(models.Model):
@@ -10,7 +9,7 @@ class Sizes(models.Model):
 
 
 class ProductTypes(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_types')
+    product = models.ForeignKey("apiv0.Product", on_delete=models.CASCADE, related_name='product_types')
     size = models.ForeignKey(Sizes, on_delete=models.CASCADE, related_name='size')
     code = models.CharField(max_length=128)
     price = models.PositiveSmallIntegerField(default=0)
@@ -25,7 +24,7 @@ class ProductTypes(models.Model):
 
 
 class ProductFibers(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_fibers')
+    product = models.ForeignKey("apiv0.Product", on_delete=models.CASCADE, related_name='product_fibers')
     title = models.CharField(max_length=32)
     description = models.CharField(max_length=32, null=True, blank=True)
 

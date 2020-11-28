@@ -14,7 +14,7 @@ class User(AbstractUser):
         return self.full_name()
 
     def full_name(self):
-        return "{} {}".format(self.first_name, self.last_name)
+        return '{} {}'.format(self.first_name, self.last_name)
 
 
 class UserProfile(models.Model):
