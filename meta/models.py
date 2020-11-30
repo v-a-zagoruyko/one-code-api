@@ -12,7 +12,6 @@ class ProductTypes(models.Model):
     product = models.ForeignKey("apiv0.Product", on_delete=models.CASCADE, related_name='product_types')
     size = models.ForeignKey(Sizes, on_delete=models.CASCADE, related_name='size')
     code = models.CharField(max_length=128)
-    price = models.PositiveSmallIntegerField(default=0)
     quantity = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):

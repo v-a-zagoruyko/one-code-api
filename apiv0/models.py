@@ -4,6 +4,7 @@ from django.utils import timezone
 
 class ProductCategory(models.Model):
     title = models.CharField(max_length=128)
+    description = models.CharField(max_length=256, null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -20,6 +21,8 @@ class Product(models.Model):
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, related_name='category')
     title = models.CharField(max_length=128)
     description = models.TextField(max_length=256)
+    price = models.PositiveSmallIntegerField(default=0)
+    sale_price = models.PositiveSmallIntegerField(default=0, null=True, blank=True)
     color = models.ForeignKey(ProductColor, on_delete=models.CASCADE, null=True, blank=True, related_name='color')
     is_visible = models.BooleanField(default=False)
     is_available = models.BooleanField(default=False)
@@ -76,4 +79,3 @@ class SaleProducts(models.Model):
     relation = models.ForeignKey(Sale, on_delete=models.CASCADE, related_name='sale_products')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='sale_product')
     size = models.ForeignKey("meta.Sizes", on_delete=models.CASCADE, related_name='sale_size')
-    price = models.PositiveSmallIntegerField(default=0)
