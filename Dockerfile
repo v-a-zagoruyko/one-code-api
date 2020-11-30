@@ -6,17 +6,15 @@ RUN pip install --no-cache-dir "poetry==$POETRY_VERSION"
 
 WORKDIR /app
 
-COPY poetry.lock pyproject.toml /app/
+COPY poetry.lock pyproject.toml .
 RUN pip3 install --no-cache-dir --upgrade pip uwsgi && \
     poetry config virtualenvs.create false && poetry install && \
     rm -rf /root/.cache/
 
-COPY ./ /app/main/
+COPY . .
 
-WORKDIR /app/main/
-
-RUN python ./manage.py migrate --no-input && \
-    python ./manage.py collectstatic --no-input
+RUN python ./main/manage.py migrate --no-input && \
+    python ./main/manage.py collectstatic --no-input
 
 EXPOSE 9000
 ENTRYPOINT []
