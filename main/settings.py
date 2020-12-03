@@ -149,6 +149,6 @@ USE_TZ = True
 SITE_ID = 1
 
 STATIC_URL = '/static/'
-STATIC_ROOT = './static/'
+STATIC_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
 
 FILE_UPLOAD_PERMISSIONS=0o755
