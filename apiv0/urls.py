@@ -7,6 +7,7 @@ router = routers.DefaultRouter()
 router.register(r'product-categories', ProductCategoriesViewSet)
 router.register(r'product', ProductViewSet, basename='Product')
 router.register(r'products-by-category', ProductsByCategoryViewSet, basename='Products')
+router.register(r'products-favourites', ProductsFavouritesViewSet, basename='Favourites')
 
 urlpatterns = [
     url(r'^', include(router.urls)),

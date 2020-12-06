@@ -35,3 +35,14 @@ class ProductsByCategoryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
     def get_serializer_class(self):
         return ProductsByCategorySerializer
+
+class ProductsFavouritesViewSet(viewsets.ReadOnlyModelViewSet):
+    permission_classes = (AllowAny, )
+
+    def get_queryset(self) :
+        id_list = self.request.GET.getlist('id_list[]', None)
+        id_list = [int(product_id) for product_id in id_list]
+        return Product.objects.filter(id__in=id_list)
+
+    def get_serializer_class(self):
+        return ProductSerializer
